@@ -12,7 +12,7 @@ export const addExpense = createAsyncThunk(
   async (data: ExpenseFormData, thunkAPI) => {
     try {
       const response = await axios.post(
-        'http://localhost:3001/api/expense',
+        `${process.env.NEXT_PUBLIC_API_URL}/expense`,
         data,
         { withCredentials: true } 
       );

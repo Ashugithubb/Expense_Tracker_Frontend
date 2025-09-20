@@ -6,7 +6,7 @@ export const fetchExpenseSummary = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(
-        "http://localhost:3001/api/expense/summary", 
+         `${process.env.NEXT_PUBLIC_API_URL}expense/summary`, 
         { withCredentials: true }
       );
       return response.data; 

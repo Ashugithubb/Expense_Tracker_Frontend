@@ -8,7 +8,7 @@ export const loginUser = createAsyncThunk(
   async (data: loginFormData, thunkAPI) => {
     try {
       const response = await axios.post(
-        'http://localhost:3001/api/auth/login',
+         `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
         data,
         { withCredentials: true }
       );
@@ -30,7 +30,7 @@ export const logoutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/auth/logout",
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/logout`,
         {},
         {
           withCredentials: true, 

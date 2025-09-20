@@ -47,7 +47,7 @@ export const fetchExpenses = createAsyncThunk<
       if (params?.limit) queryParams.append('limit', params.limit.toString());
 
       const response = await axios.get<GetExpensesResponse>(
-        `http://localhost:3001/api/expense?${queryParams.toString()}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/expense?${queryParams.toString()}`,
         { withCredentials: true },
 
       );
@@ -65,7 +65,7 @@ export const editExpense = createAsyncThunk(
     console.log("expense.id",data.id)
     try {
       const response = await axios.put(
-        `http://localhost:3001/api/expense/${data.id}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/expense/${data.id}`,
         data,
         { withCredentials: true }
       );
@@ -84,7 +84,7 @@ export const deleteExpense = createAsyncThunk(
   async (id: string, thunkAPI) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/api/expense/${id}`,
+         `${process.env.NEXT_PUBLIC_API_URL}/expense/${id}`,
         { withCredentials: true }
       );
       return response.data;
