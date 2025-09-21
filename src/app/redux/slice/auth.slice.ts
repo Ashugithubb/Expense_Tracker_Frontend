@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { loginUser } from "../thunk/login";
+import { loginUser } from "../thunk/authThunk";
+
 
 export interface authinfo {
   msg: string,

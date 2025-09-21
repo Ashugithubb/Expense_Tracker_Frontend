@@ -26,9 +26,15 @@ export const fetchRecentExpenses = createAsyncThunk<
   { rejectValue: string }
 >("expenses/fetchRecent", async (_, { rejectWithValue }) => {
   try {
+    const token = localStorage.getItem("access_token");
+
     const response = await axios.get<RecentExpensesResponse>(
       `${process.env.NEXT_PUBLIC_API_URL}/expense/recent`,
-      { withCredentials: true }
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
 
     return response.data;

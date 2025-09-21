@@ -11,12 +11,17 @@ export const addExpense = createAsyncThunk(
   'expenses/add',
   async (data: ExpenseFormData, thunkAPI) => {
     try {
+      const token = localStorage.getItem("access_token");
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/expense`,
         data,
-        { withCredentials: true } 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      return response.data; 
+      return response.data;
     } catch (error: any) {
       const errorMessage =
         error.response?.data?.message || 'Failed to add expense';

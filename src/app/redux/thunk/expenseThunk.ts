@@ -37,6 +37,7 @@ export const fetchExpenses = createAsyncThunk<
   'expenses/fetch',
   async (params, thunkAPI) => {
     try {
+       const token = localStorage.getItem("access_token");
       const queryParams = new URLSearchParams();
 
       if (params?.search) queryParams.append('search', params.search);
@@ -48,7 +49,11 @@ export const fetchExpenses = createAsyncThunk<
 
       const response = await axios.get<GetExpensesResponse>(
          `${process.env.NEXT_PUBLIC_API_URL}/expense?${queryParams.toString()}`,
-        { withCredentials: true },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
 
       );
       return response.data;
@@ -64,10 +69,15 @@ export const editExpense = createAsyncThunk(
   async (data: any, thunkAPI) => {
     console.log("expense.id",data.id)
     try {
+       const token = localStorage.getItem("access_token");
       const response = await axios.put(
          `${process.env.NEXT_PUBLIC_API_URL}/expense/${data.id}`,
         data,
-        { withCredentials: true }
+         {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       return response.data;
     } catch (error: any) {
@@ -83,9 +93,14 @@ export const deleteExpense = createAsyncThunk(
   'expense/deleteExpense',
   async (id: string, thunkAPI) => {
     try {
+       const token = localStorage.getItem("access_token");
       const response = await axios.delete(
          `${process.env.NEXT_PUBLIC_API_URL}/expense/${id}`,
-        { withCredentials: true }
+         {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       return response.data;
     } catch (error: any) {
