@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "https://expense-tracker-backend-1a2x.onrender.com/$1"
-    }
-  ]
-}
