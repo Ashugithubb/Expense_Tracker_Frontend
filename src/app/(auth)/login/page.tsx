@@ -32,8 +32,10 @@ export default function LoginForm() {
 
   const onSubmit = async (data: LoginFormData) => {
     const res = await dispatch(loginUser(data));
+    console.log("Setting cookie with maxAge:",res);
     if (res.meta.requestStatus === 'fulfilled') {
       toast.success("Login successful!");
+          console.log("iside the if g0ing t0 call dasb",);
       router.push('/dashboard');
     } else {
       toast.error(res.payload || "Login failed");
