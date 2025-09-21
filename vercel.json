@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://your-backend.onrender.com/$1"
+      "destination": "https://expense-tracker-backend-1a2x.onrender.com/$1"
     }
   ]
 }
